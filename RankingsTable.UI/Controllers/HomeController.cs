@@ -2,6 +2,8 @@
 
 namespace RankingsTable.UI.Controllers
 {
+    using System.Linq;
+
     using RankingsTable.Data;
 
     public class HomeController : Controller
@@ -15,6 +17,7 @@ namespace RankingsTable.UI.Controllers
 
         public IActionResult Index()
         {
+            var player = this.dbContext.Players.First();
             return View();
         }
 

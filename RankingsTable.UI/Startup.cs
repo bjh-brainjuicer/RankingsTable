@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -31,6 +32,15 @@ namespace RankingsTable.UI
             // Add framework services.
             services.AddMvc();
 
+            // Add data services
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<RankingsTableDbContext>(options =>
+                {
+                    options.UseSqlServer("Server=localhost;Database=RankingsTable;Trusted_Connection=True;MultipleActiveResultSets=true;");
+                });
+
+            // Register components
             services.Add(new ServiceDescriptor(typeof(IRankingsTableDbContext), typeof(RankingsTableDbContext), ServiceLifetime.Transient));
         }
 

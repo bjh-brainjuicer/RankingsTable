@@ -9,7 +9,7 @@ namespace RankingsTable.Data.Entities
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
+        [Required, MaxLength(250)]
         public string Name { get; set; }
     }
 }
