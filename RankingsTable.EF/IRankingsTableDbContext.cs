@@ -7,5 +7,7 @@
     public interface IRankingsTableDbContext
     {
         DbSet<Player> Players { get; } 
+
+        DbSet<Season> Seasons { get; }  
     }
 }

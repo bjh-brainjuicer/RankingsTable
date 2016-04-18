@@ -18,6 +18,7 @@ namespace RankingsTable.UI.Controllers
         public IActionResult Index()
         {
             var player = this.dbContext.Players.First();
+            var seasons = this.dbContext.Seasons.ToList();
             return View();
         }
 
