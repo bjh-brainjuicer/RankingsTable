@@ -1544,7 +1544,7 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "RankingsTable.Data/1.0.0": {
+      "RankingsTable.EF/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
@@ -3175,7 +3175,7 @@
           "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "RankingsTable.Data/1.0.0": {
+      "RankingsTable.EF/1.0.0": {
         "type": "project",
         "framework": ".NETPlatform,Version=v5.4",
         "dependencies": {
@@ -5773,7 +5773,7 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "RankingsTable.Data/1.0.0": {
+      "RankingsTable.EF/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
@@ -7549,7 +7549,7 @@
           "lib/net45/Newtonsoft.Json.dll": {}
         }
       },
-      "RankingsTable.Data/1.0.0": {
+      "RankingsTable.EF/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.5.1",
         "dependencies": {
@@ -9183,7 +9183,7 @@
           "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "RankingsTable.Data/1.0.0": {
+      "RankingsTable.EF/1.0.0": {
         "type": "project",
         "framework": ".NETPlatform,Version=v5.4",
         "dependencies": {
@@ -12066,7 +12066,7 @@
           "lib/portable-net45+wp80+win8+wpa81+aspnetcore50/Newtonsoft.Json.dll": {}
         }
       },
-      "RankingsTable.Data/1.0.0": {
+      "RankingsTable.EF/1.0.0": {
         "type": "project",
         "framework": ".NETPlatform,Version=v5.4",
         "dependencies": {
@@ -13548,9 +13548,9 @@
     }
   },
   "libraries": {
-    "RankingsTable.Data/1.0.0": {
+    "RankingsTable.EF/1.0.0": {
       "type": "project",
-      "path": "../RankingsTable.Data/project.json"
+      "path": "../RankingsTable.EF/project.json"
     },
     "EntityFramework.Core/7.0.0-rc1-final": {
       "type": "package",
@@ -18929,7 +18929,7 @@
       "Microsoft.Extensions.Logging.Debug >= 1.0.0-rc1-final",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0-rc1-final",
       "EntityFramework.Core >= 7.0.0-rc1-final",
-      "RankingsTable.Data >= 1.0.0-*",
+      "RankingsTable.EF >= 1.0.0-*",
       "EntityFramework.MicrosoftSqlServer >= 7.0.0-rc1-final"
     ],
     "DNX,Version=v4.5.1": [],

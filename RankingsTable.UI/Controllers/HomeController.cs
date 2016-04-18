@@ -4,7 +4,7 @@ namespace RankingsTable.UI.Controllers
 {
     using System.Linq;
 
-    using RankingsTable.Data;
+    using RankingsTable.EF;
 
     public class HomeController : Controller
     {

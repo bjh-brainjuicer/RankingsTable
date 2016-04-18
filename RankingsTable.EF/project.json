@@ -1,6 +1,6 @@
 {
   "version": "1.0.0-*",
-  "description": "RankingsTable.Data Class Library",
+  "description": "RankingsTable.EF Class Library",
   "authors": [ "ben.hughes" ],
   "tags": [ "" ],
   "projectUrl": "",

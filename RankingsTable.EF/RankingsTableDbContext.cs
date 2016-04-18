@@ -1,10 +1,9 @@
-﻿using Microsoft.Data.Entity;
-
-namespace RankingsTable.Data
+﻿namespace RankingsTable.EF
 {
+    using Microsoft.Data.Entity;
     using Microsoft.Data.Entity.Infrastructure;
 
-    using RankingsTable.Data.Entities;
+    using RankingsTable.EF.Entities;
 
     public class RankingsTableDbContext : DbContext, IRankingsTableDbContext
     {

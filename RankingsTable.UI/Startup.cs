@@ -8,11 +8,10 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using RankingsTable.EF;
 
 namespace RankingsTable.UI
 {
-    using RankingsTable.Data;
-
     public class Startup
     {
         public Startup(IHostingEnvironment env)

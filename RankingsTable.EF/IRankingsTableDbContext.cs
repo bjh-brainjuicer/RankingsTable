@@ -1,8 +1,8 @@
-﻿namespace RankingsTable.Data
+﻿namespace RankingsTable.EF
 {
     using Microsoft.Data.Entity;
 
-    using RankingsTable.Data.Entities;
+    using RankingsTable.EF.Entities;
 
     public interface IRankingsTableDbContext
     {

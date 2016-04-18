@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace RankingsTable.Data.Entities
+namespace RankingsTable.EF.Entities
 {
-    using System.ComponentModel.DataAnnotations;
+    using System;
 
     public class Player
     {
