@@ -4,7 +4,7 @@
 
     using RankingsTable.Data.Entities;
 
-    interface IRankingsTableDbContext
+    public interface IRankingsTableDbContext
     {
         DbSet<Player> Players { get; } 
     }

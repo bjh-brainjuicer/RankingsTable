@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 
 namespace RankingsTable.UI
 {
+    using RankingsTable.Data;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -28,6 +30,8 @@ namespace RankingsTable.UI
         {
             // Add framework services.
             services.AddMvc();
+
+            services.Add(new ServiceDescriptor(typeof(IRankingsTableDbContext), typeof(RankingsTableDbContext), ServiceLifetime.Transient));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
