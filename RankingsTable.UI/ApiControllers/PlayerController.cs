@@ -31,14 +31,12 @@
         {
             return this.dbContext.Players;
         }
-
-        /* TODO
+        
         [HttpPost]
-        public void Post()
+        public void Post([FromBody]string name)
         {
-            this.dbContext.Seasons.Add(new Season { Id = Guid.NewGuid(), Number = this.dbContext.Seasons.Max(s => s.Number) + 1 });
+            this.dbContext.Players.Add(new Player { Id = Guid.NewGuid(), Name = name });
             this.dbContext.SaveChanges();
         }
-        */
     }
 }

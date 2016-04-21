@@ -39,5 +39,24 @@
             this.dbContext.Seasons.Add(new Season { Id = Guid.NewGuid(), Number = this.dbContext.Seasons.Max(s => s.Number) + 1 });
             this.dbContext.SaveChanges();
         }
+
+        [HttpPost("players")]
+        public void Post([FromBody]AddPlayerDTO addPlayerDto) // TODO this isn't resolving yet
+        {
+            var season = this.dbContext.Seasons.Single(s => s.Id.ToString() == addPlayerDto.SeasonId);
+            if (!season.SeasonPlayers.Any(sp => sp.PlayerId.ToString() == addPlayerDto.PlayerId))
+            {
+                var player = this.dbContext.Players.Single(p => p.Id.ToString() == addPlayerDto.PlayerId);
+                season.SeasonPlayers.Add(new SeasonPlayer { Season = season, Player = player });
+                this.dbContext.SaveChanges();
+            }
+        }
+
+        public struct AddPlayerDTO
+        {
+             public string SeasonId { get; set; }
+
+             public string PlayerId { get; set; }
+        }
     }
 }
