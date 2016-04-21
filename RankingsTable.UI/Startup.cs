@@ -53,7 +53,7 @@ namespace RankingsTable.UI
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -68,12 +68,11 @@ namespace RankingsTable.UI
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc(
+                routes =>
+                    {
+                        routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                    });
 
 #if DEBUG
             this.SeedTestData();

@@ -8,6 +8,8 @@
     {
         DbSet<Player> Players { get; } 
 
-        DbSet<Season> Seasons { get; }  
+        DbSet<Season> Seasons { get; }
+
+        int SaveChanges();
     }
 }
