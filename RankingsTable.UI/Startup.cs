@@ -12,8 +12,13 @@ using RankingsTable.EF;
 
 namespace RankingsTable.UI
 {
+    using RankingsTable.EF.Entities;
+
     public class Startup
     {
+        // TODO this is a bit hacky, needs to be in config file
+        private string ConnStr = "Server=localhost;Database=RankingsTable;Trusted_Connection=True;MultipleActiveResultSets=true;";
+
         public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
@@ -36,7 +41,7 @@ namespace RankingsTable.UI
                 .AddSqlServer()
                 .AddDbContext<RankingsTableDbContext>(options =>
                 {
-                    options.UseSqlServer("Server=localhost;Database=RankingsTable;Trusted_Connection=True;MultipleActiveResultSets=true;");
+                    options.UseSqlServer(this.ConnStr);
                 });
 
             // Register components
@@ -69,6 +74,32 @@ namespace RankingsTable.UI
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+#if DEBUG
+            this.SeedTestData();
+#endif
+        }
+
+        private void SeedTestData()
+        {
+            var options = new DbContextOptionsBuilder<RankingsTableDbContext>();
+            options.UseSqlServer(this.ConnStr);
+            using (var db = new RankingsTableDbContext(options.Options))
+            {
+                if (!db.Players.Any(p => p.Name == "Ben"))
+                {
+                    var season = new Season { Number = 1 };
+
+                    var player1 = new Player { Name = "Ben" };
+                    var player2 = new Player { Name = "Foo" };
+
+                    var fixture = new Fixture { Season = season, HomePlayer = player1, HomeGoals = 1, AwayPlayer = player2, AwayGoals = 3 };
+
+                    db.Seasons.Add(season);
+
+                    db.SaveChanges();
+                }
+            }
         }
 
         // Entry point for the application.

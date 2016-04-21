@@ -14,9 +14,7 @@ namespace RankingsTable.EF.Entities
         public virtual Player AwayPlayer { get; set; }
 
         public virtual Season Season { get; set; }
-
-        public virtual Result Result { get; set; }
-
+        
         [Required]
         public Guid HomePlayerId { get; set; }
 
@@ -25,5 +23,9 @@ namespace RankingsTable.EF.Entities
 
         [Required]
         public Guid SeasonId { get; set; }
+        
+        public int HomeGoals { get; set; }
+
+        public int AwayGoals { get; set; }
     }
 }

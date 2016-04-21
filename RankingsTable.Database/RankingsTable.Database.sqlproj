@@ -63,7 +63,6 @@
     <Build Include="Tables\Fixture.sql" />
     <Build Include="Tables\Player.sql" />
     <Build Include="Tables\Season.sql" />
-    <Build Include="Tables\Result.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Local.publish.xml" />

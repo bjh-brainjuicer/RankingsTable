@@ -18,6 +18,6 @@ namespace RankingsTable.EF.Entities
         [Required]
         public int Number { get; set; }
 
-        public virtual HashSet<Fixture> Fixtures { get; set; } 
+        public virtual ICollection<Fixture> Fixtures { get; set; } 
     }
 }

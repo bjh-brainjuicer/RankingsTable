@@ -19,8 +19,8 @@ namespace RankingsTable.EF.Entities
         [Required, MaxLength(250)]
         public string Name { get; set; }
 
-        public virtual HashSet<Fixture> HomeFixtures { get; set; } 
+        public virtual ICollection<Fixture> HomeFixtures { get; set; } 
 
-        public virtual HashSet<Fixture> AwayFixtures { get; set; } 
+        public virtual ICollection<Fixture> AwayFixtures { get; set; } 
     }
 }
