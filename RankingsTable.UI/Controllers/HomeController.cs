@@ -4,6 +4,8 @@ namespace RankingsTable.UI.Controllers
 {
     using System.Linq;
 
+    using Microsoft.Data.Entity;
+
     using RankingsTable.EF;
 
     public class HomeController : Controller
@@ -17,8 +19,7 @@ namespace RankingsTable.UI.Controllers
 
         public IActionResult Index()
         {
-            var player = this.dbContext.Players.First();
-            var seasons = this.dbContext.Seasons.ToList();
+            var players = this.dbContext.Players.Include(p => p.AwayFixtures).Include(p => p.HomeFixtures).ToList();
             return View();
         }
 

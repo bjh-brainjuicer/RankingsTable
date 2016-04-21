@@ -3,6 +3,7 @@
 namespace RankingsTable.EF.Entities
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Fixture
     {
@@ -10,7 +11,7 @@ namespace RankingsTable.EF.Entities
         public Guid Id { get; set; }
         
         public virtual Player HomePlayer { get; set; }
-
+        
         public virtual Player AwayPlayer { get; set; }
 
         public virtual Season Season { get; set; }
@@ -24,8 +25,8 @@ namespace RankingsTable.EF.Entities
         [Required]
         public Guid SeasonId { get; set; }
         
-        public int HomeGoals { get; set; }
+        public int? HomeGoals { get; set; }
 
-        public int AwayGoals { get; set; }
+        public int? AwayGoals { get; set; }
     }
 }

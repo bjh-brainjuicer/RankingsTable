@@ -88,13 +88,18 @@ namespace RankingsTable.UI
             {
                 if (!db.Players.Any(p => p.Name == "Ben"))
                 {
-                    var season = new Season { Number = 1 };
+                    var season = new Season { Id = Guid.NewGuid(), Number = 1 };
 
-                    var player1 = new Player { Name = "Ben" };
-                    var player2 = new Player { Name = "Foo" };
+                    var player1 = new Player { Id = Guid.NewGuid(), Name = "Ben" };
+                    var player2 = new Player { Id = Guid.NewGuid(), Name = "Foo" };
 
-                    var fixture = new Fixture { Season = season, HomePlayer = player1, HomeGoals = 1, AwayPlayer = player2, AwayGoals = 3 };
+                    var fixture = new Fixture { Id = Guid.NewGuid(), Season = season, HomePlayer = player1, HomeGoals = 1, AwayPlayer = player2, AwayGoals = 3 };
+                    season.Fixtures.Add(fixture);
+                    player1.HomeFixtures.Add(fixture);
+                    player2.AwayFixtures.Add(fixture);
 
+                    db.Players.Add(player1);
+                    db.Players.Add(player2);
                     db.Seasons.Add(season);
 
                     db.SaveChanges();

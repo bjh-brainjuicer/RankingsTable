@@ -4,6 +4,7 @@ namespace RankingsTable.EF.Entities
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Player
     {
@@ -18,9 +19,11 @@ namespace RankingsTable.EF.Entities
 
         [Required, MaxLength(250)]
         public string Name { get; set; }
+        
+        [InverseProperty("HomePlayer")]
+        public virtual ICollection<Fixture> HomeFixtures { get; set; }
 
-        public virtual ICollection<Fixture> HomeFixtures { get; set; } 
-
+        [InverseProperty("AwayPlayer")]
         public virtual ICollection<Fixture> AwayFixtures { get; set; } 
     }
 }
