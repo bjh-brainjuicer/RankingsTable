@@ -10,6 +10,7 @@ namespace RankingsTable.EF.Entities
         public Season()
         {
             this.Fixtures = new HashSet<Fixture>();
+            this.SeasonPlayers = new HashSet<SeasonPlayer>();
         }
 
         [Key]
@@ -19,5 +20,7 @@ namespace RankingsTable.EF.Entities
         public int Number { get; set; }
 
         public virtual ICollection<Fixture> Fixtures { get; set; } 
+
+        public virtual ICollection<SeasonPlayer> SeasonPlayers { get; set; } 
     }
 }

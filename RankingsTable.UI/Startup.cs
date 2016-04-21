@@ -92,14 +92,27 @@ namespace RankingsTable.UI
                     var player1 = new Player { Id = Guid.NewGuid(), Name = "Ben" };
                     var player2 = new Player { Id = Guid.NewGuid(), Name = "Foo" };
 
-                    var fixture = new Fixture { Id = Guid.NewGuid(), Season = season, HomePlayer = player1, HomeGoals = 1, AwayPlayer = player2, AwayGoals = 3 };
-                    season.Fixtures.Add(fixture);
-                    player1.HomeFixtures.Add(fixture);
-                    player2.AwayFixtures.Add(fixture);
+                    var seasonPlayer1 = new SeasonPlayer { Id = Guid.NewGuid(), Season = season, Player = player1 };
+                    var seasonPlayer2 = new SeasonPlayer { Id = Guid.NewGuid(), Season = season, Player = player2 };
+                    player1.SeasonPlayers.Add(seasonPlayer1);
+                    player2.SeasonPlayers.Add(seasonPlayer2);
 
+                    var fixture = new Fixture
+                                      {
+                                          Id = Guid.NewGuid(),
+                                          Season = season,
+                                          HomePlayer = seasonPlayer1,
+                                          HomeGoals = 1,
+                                          AwayPlayer = seasonPlayer2,
+                                          AwayGoals = 3
+                                      };
+                    season.Fixtures.Add(fixture);
+                    seasonPlayer1.HomeFixtures.Add(fixture);
+                    seasonPlayer2.AwayFixtures.Add(fixture);
+                    
+                    db.Seasons.Add(season);
                     db.Players.Add(player1);
                     db.Players.Add(player2);
-                    db.Seasons.Add(season);
 
                     db.SaveChanges();
                 }

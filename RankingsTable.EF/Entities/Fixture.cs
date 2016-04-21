@@ -10,9 +10,9 @@ namespace RankingsTable.EF.Entities
         [Key]
         public Guid Id { get; set; }
         
-        public virtual Player HomePlayer { get; set; }
+        public virtual SeasonPlayer HomePlayer { get; set; }
         
-        public virtual Player AwayPlayer { get; set; }
+        public virtual SeasonPlayer AwayPlayer { get; set; }
 
         public virtual Season Season { get; set; }
         
