@@ -11,7 +11,7 @@
     using RankingsTable.EF.Entities;
 
     [Route("api/[controller]")]
-    public class PlayerController : ApiController
+    internal class PlayerController : ApiController
     {
         private readonly IRankingsTableDbContext dbContext;
 

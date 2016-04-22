@@ -10,27 +10,33 @@
 
     using RankingsTable.EF;
     using RankingsTable.EF.Entities;
+    using RankingsTable.UI.Mapping;
+    using RankingsTable.UI.Models;
 
     [Route("api/[controller]")]
-    public class SeasonController : ApiController
+    internal class SeasonController : ApiController
     {
         private readonly IRankingsTableDbContext dbContext;
 
-        public SeasonController(IRankingsTableDbContext dbContext)
+        private readonly IDTOMapper dtoMapper;
+
+        public SeasonController(IRankingsTableDbContext dbContext, IDTOMapper dtoMapper)
         {
             this.dbContext = dbContext;
+            this.dtoMapper = dtoMapper;
         }
 
         [HttpGet("{id}")]
-        public Season Get(Guid id)
+        public DetailedSeasonDTO Get(Guid id)
         {
-            return this.dbContext.Seasons.Single(s => s.Id == id);
+            var season = this.dbContext.Seasons.Include(s => s.Fixtures).Include(s => s.SeasonPlayers).Single(s => s.Id == id);
+            return this.dtoMapper.Map<Season, DetailedSeasonDTO>(season);
         }
 
         [HttpGet]
-        public IEnumerable<Season> Get()
+        public IEnumerable<BasicSeasonDTO> Get()
         {
-            return this.dbContext.Seasons;
+            return this.dtoMapper.Map<IEnumerable<Season>, IEnumerable<BasicSeasonDTO>>(this.dbContext.Seasons);
         }
 
         [HttpPost]
@@ -43,20 +49,13 @@
         [HttpPost("players")]
         public void Post([FromBody]AddPlayerDTO addPlayerDto) // TODO this isn't resolving yet
         {
-            var season = this.dbContext.Seasons.Single(s => s.Id.ToString() == addPlayerDto.SeasonId);
-            if (!season.SeasonPlayers.Any(sp => sp.PlayerId.ToString() == addPlayerDto.PlayerId))
+            var season = this.dbContext.Seasons.Include(s => s.SeasonPlayers).Single(s => s.Id == addPlayerDto.SeasonId);
+            if (!season.SeasonPlayers.Any(sp => sp.PlayerId == addPlayerDto.PlayerId))
             {
-                var player = this.dbContext.Players.Single(p => p.Id.ToString() == addPlayerDto.PlayerId);
+                var player = this.dbContext.Players.Single(p => p.Id == addPlayerDto.PlayerId);
                 season.SeasonPlayers.Add(new SeasonPlayer { Season = season, Player = player });
                 this.dbContext.SaveChanges();
             }
-        }
-
-        public struct AddPlayerDTO
-        {
-             public string SeasonId { get; set; }
-
-             public string PlayerId { get; set; }
         }
     }
 }

@@ -12,7 +12,10 @@ using RankingsTable.EF;
 
 namespace RankingsTable.UI
 {
+    using AutoMapper;
+
     using RankingsTable.EF.Entities;
+    using RankingsTable.UI.Mapping;
 
     public class Startup
     {
@@ -46,6 +49,7 @@ namespace RankingsTable.UI
 
             // Register components
             services.Add(new ServiceDescriptor(typeof(IRankingsTableDbContext), typeof(RankingsTableDbContext), ServiceLifetime.Transient));
+            services.Add(new ServiceDescriptor(typeof(IDTOMapper), typeof(DTOMapper), ServiceLifetime.Singleton));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,12 +77,12 @@ namespace RankingsTable.UI
                     {
                         routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
                     });
-
+            
 #if DEBUG
             this.SeedTestData();
 #endif
         }
-
+        
         private void SeedTestData()
         {
             var options = new DbContextOptionsBuilder<RankingsTableDbContext>();
